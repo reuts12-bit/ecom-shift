@@ -16,7 +16,7 @@
     }
     requestAnimationFrame(step);
   }
-  document.querySelectorAll('.grid2,.steps,.deliv__list,.testis,.people').forEach(function (g) {
+  document.querySelectorAll('.grid2,.steps,.deliv__list,.testis,.people,.reports,.beliefs').forEach(function (g) {
     g.querySelectorAll('.reveal').forEach(function (el, i) { el.style.setProperty('--d', (i * 0.08) + 's'); });
   });
   var io = new IntersectionObserver(function (entries) {
@@ -80,7 +80,7 @@
   if (CFG.VIDEO_EMBED_URL) {
     var v = document.getElementById('video');
     v.querySelector('.video__play').addEventListener('click', function () {
-      v.innerHTML = '<iframe src="' + CFG.VIDEO_EMBED_URL + '" allow="autoplay; fullscreen" allowfullscreen title="סרטון הסבר eCom Shift"></iframe>';
+      v.innerHTML = '<iframe src="' + CFG.VIDEO_EMBED_URL + '" allow="autoplay; fullscreen" allowfullscreen title="סרטון הסבר אודיט לחנות"></iframe>';
     });
   }
 
@@ -181,7 +181,7 @@
     };
     nextBtn.disabled = true; nextBtn.textContent = 'שולחים…';
     var done = function () { nextBtn.disabled = false; show(5); };
-    if (!CFG.LEAD_WEBHOOK_URL) { console.info('[eCom Shift] lead (no webhook set):', payload); return done(); }
+    if (!CFG.LEAD_WEBHOOK_URL) { console.info('[audit] lead (no webhook set):', payload); return done(); }
     fetch(CFG.LEAD_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
       .then(done)
       .catch(function () { nextBtn.disabled = false; nextBtn.textContent = 'שליחה'; alert('משהו השתבש בשליחה. נסו שוב בעוד רגע.'); });
